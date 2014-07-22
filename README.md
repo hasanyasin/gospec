@@ -11,7 +11,7 @@ This is a sugar-coated version of
 [The Go Programming Language Specification](http://golang.org/ref/spec).
 
 For details, please see
-[the introduction](http://hasanyasin.com/docs/gospec/001-intro.html).
+[the introduction](http://hasanyasin.com/docs/gospec/001-Introduction.html).
 
 You can read the HTML-rendered version
 [here](http://hasanyasin.com/docs/gospec/).
