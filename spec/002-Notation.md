@@ -20,4 +20,9 @@ just good only when served in addition to those.
 
 ## Visform
 
-In this representation of syntax, a more visual approach is preferred.
+In this notation, a more visual approach is preferred, hence I call it Visform.
+Every character in the target language, which is Go in this document are
+directly shown without quotation marks. Quotation marks are used only when they
+are used in the target language.
+
+TODO: More on this when I decide on the details.
