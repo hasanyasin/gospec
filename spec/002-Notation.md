@@ -1,9 +1,11 @@
 # Notation
 
-I love learning new languages and Go is one of the best that I have ever
-studied. The spec uses EBNF for specifying syntax. Although a
-[Metasyntax](https://en.wikipedia.org/wiki/Metasyntax) is very useful to express
-the rules very clearly without causing any confusion, it is really not the most
+If you are like me with an irresistable passion for learning new languages, you
+will be very familiar with
+[Metasyntax](https://en.wikipedia.org/wiki/Metasyntax) notations. The spec uses
+[EBNF](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form) for
+specifying syntax. Although a metasyntax is very useful to express the rules
+very clearly without giving space for any confusion, it is really not the most
 readable piece of text. Since the spec already provides this formal
 representation, I believe it wouldn't hurt to have a less-concrete; but much
 more readable style.
