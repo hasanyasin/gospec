@@ -78,10 +78,22 @@ grouping instead of alphabetic order.
 
 #### Integer Literals
 
-Integer literals represent integer constants. Go support octal and hexadecimal
+Integer literals represent [integer constant](#)s. Go support octal and hexadecimal
 literals with the use of prefixes: `0` for octal and `0x` or `0X` for
 hexadecimal. For hexadecimal literals, `a-f` digits are case insensitive so you
 can use either uppercase, lovercase or a mixture of them.
 
 TODO: Add information about the idiomatic use of lower/upper cases for
 hexadecimals in standard library.
+
+#### Floating-point Literals
+
+Floating-point literals represent [floating-point constant]s. A floating point
+literal always have one and only one full stop character `.` and either or both
+an integer part preceding the decimal point and a fractional part following the
+decimal point.
+
+Fractional part can also have an exponent part which starts with an `e` or `E`
+character followed by the decimal exponent. Decimal exponent can be signed with
+`+` for positive or `-` for negative. When it is not signed, it is considered
+positive.
