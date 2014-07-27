@@ -58,3 +58,15 @@ When you code, you never think about it; you just know how.
 
 ## Tokens
 
+### Identifiers
+
+Identifiers in Go starts with a letter and continue with letters and digits. You
+can use unicode letters in identifiers, so `问候 := "Hello"` is a valid Go
+statement. (Please don't start an argument about this example. I just wanted to
+show what you can do. What you should/would do is your problem.)
+
+### Keywords
+
+TODO: Add list of Valid Keywords with short descriptions. Use a semantic
+grouping instead of alphabetic order.
+
