@@ -67,6 +67,21 @@ show what you can do. What you should/would do is your problem.)
 
 ### Keywords
 
-TODO: Add list of Valid Keywords with short descriptions. Use a semantic
+**TODO:** Add the list of Go keywords with short descriptions. Use a semantic
 grouping instead of alphabetic order.
 
+### Operators and Delimiters
+
+**TODO:** Add the list of operators and delimiters in a similar fashion.
+
+### Literals
+
+#### Integer Literals
+
+Integer literals represent integer constants. Go support octal and hexadecimal
+literals with the use of prefixes: `0` for octal and `0x` or `0X` for
+hexadecimal. For hexadecimal literals, `a-f` digits are case insensitive so you
+can use either uppercase, lovercase or a mixture of them.
+
+TODO: Add information about the idiomatic use of lower/upper cases for
+hexadecimals in standard library.
