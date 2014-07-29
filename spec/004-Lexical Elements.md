@@ -226,16 +226,17 @@ the accent and the preceding character. For example, "â" can be represented as
 I don't know the latest versions; but I remember a few years ago Mac OS using
 combined form in file names and Linux or Windows not being very fond of it.
 
-In my personal view, I very much dislike having *human language* inside code
-outside of comments; but if you have issues with your strings, keep these in
-mind:
+Personally, I very much dislike having anything that doesn't belong to the main
+language in a source code, such as HTML fragments or English sentences outside
+of comments in a `.go` file. However if you have issues with your strings, keep
+these in mind:
 
 * Your editor: Beware of the encoding of your source code files. For Go, it
 must be UTF-8.
 
 * If you are dealing with the file system and targeting multiple platforms, be
   careful about non-ASCII characters in file names, especially characters with
-  accents. (I prefer saying "non-ASCII characters instead of how some would call
+  accents. (I prefer saying "non-ASCII characters unlike many who would call
   those characters "Unicode characters" because ASCII characters are also
   Unicode characters.)
 
