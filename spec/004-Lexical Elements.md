@@ -97,3 +97,10 @@ Fractional part can also have an exponent part which starts with an `e` or `E`
 character followed by the decimal exponent. Decimal exponent can be signed with
 `+` for positive or `-` for negative. When it is not signed, it is considered
 positive.
+
+#### Imaginary Literals
+
+Go natively support imaginary numbers. An imaginary literal is defined by the
+`i` suffix added to a token which would normally be either an integer or
+floating-point literal.
+
