@@ -76,12 +76,19 @@ grouping instead of alphabetic order.
 
 ### Literals
 
+Literals are constants, they are right-hand values. A literal is the
+representation of values that we put inside variables. In an example statement
+like `a:=5`, `5` is an integer literal which represents the integer constant
+that has the value decimal 5. In addition to the ones we will discuss in this
+section, there are also composite literals; but we will talk about them later,
+in [Expressions](#) section.
+
 #### Integer Literals
 
-Integer literals represent [integer constant](#)s. Go support octal and hexadecimal
-literals with the use of prefixes: `0` for octal and `0x` or `0X` for
-hexadecimal. For hexadecimal literals, `a-f` digits are case insensitive so you
-can use either uppercase, lowercase or a mixture of them.
+Integer literals represent [integer constant](#)s. Go support octal and
+hexadecimal literals with the use of prefixes: `0` for octal and `0x` or `0X`
+for hexadecimal. For hexadecimal literals, `a-f` digits are case insensitive so
+you can use either uppercase, lowercase or a mixture of them.
 
 TODO: Add information about the idiomatic use of lower/upper cases for
 hexadecimals in standard library.
@@ -138,7 +145,7 @@ character representation of the Unicode code point in alternative ways:
    value above 255 although by structure. For octal representation, in spite of
    being able to represent values above 255 with three digits; the limit is
    still there and the maximum value a rune literal can have in octal
-   representation is `399` (255 decimal). If you try to have a rune literal such
+   representation is `377` (255 decimal). If you try to have a rune literal such
    as ``\400``, your code will not compile.
 
 4. In the other rune representation, `\u` and `\U` escapes are respectively
@@ -166,3 +173,70 @@ rune literals cannot have any other escape sequence.
 \'   U+0027 single quote  (valid escape only within rune literals)
 \"   U+0022 double quote  (valid escape only within string literals)
 ```
+
+#### String Literals
+
+Strings are concatenation of characters. Go allows us to represent strings in
+two forms:
+
+1. **Interpreted String Literals:** This is what we have in many languages. We
+   use double quotes `"` to start and stop a string literal. If we want to use
+   double quote character inside the string, we escape it with a backslash so
+   `\"` is rendered as a single quote. All the escape sequences that are valid
+   for rune literals are valid for interpreted string literals, except for the
+   single quote escape. `\'` is illegal between double quotes since you don't
+   need to escape it. You just type it: `"Go's beauty."`.
+
+   One thing you should note is that, in a rune literal, we can only have one
+   Unicode code point. With hexadecimal and octal representations, we can only
+   have a 1-byte value. For multi-byte characters, we use \u or \U notations. In
+   string literals, however, we can represent multi-byte characters with the
+   sequential use of hexadecimal or octal representations in UTF-8 encoding.
+
+   Example: `"\xe6\x88\x91"` is the same as `"\u6211"` which is the same as
+   `"我"`. Here, the three-byte number e68891 is UTF-8 encoded version of
+   character "我" (which means I/me by the way).
+
+   In other words, in a string literal, `\x` (hexadecimal) and `\` (octal)
+   escapes represent *individual bytes* while `\u` and `\U` escapes represent
+   individual characters.
+
+2. **Raw String Literals:** We start and finish raw string literals with back
+   quotes (a.k.a. back-tick), `` ` ``. A raw string literal can span multiple
+   lines in the source code. Backslash character does not have any special
+   meaning in a raw string hence it is called raw, it is not interpreted.
+
+   However, there is still one little modification that will happen to your raw
+   strings: Carriage return character, `\r`, will be removed. Thus, if you are
+   using an editor which ends lines with `\r\n` or `\n\r`, your compiled code
+   will have these replaced with `\n`. This is the result of the same principle
+   Go follows, keeping things simple by deciding on one thing.
+
+One last thing you should be aware of is representation of accented characters
+in unified or composed form. This is not an issue specific to Go; but since spec
+mentions it, I didn't want to skip. Unicode has [combining characters](
+https://en.wikipedia.org/wiki/Combining_character) and when such a
+character follows a normal character, the end result would be the combination of
+the accent and the preceding character. For example, "â" can be represented as
+
+- one Unicode code point, "\u00e2" (LATIN SMALL LETTER A WITH CIRCUMFLEX) or
+- two Unicode code points, "\u0061\u0302" (LATIN SMALL LETTER A followed by
+  COMBINING CIRCUMFLEX ACCENT)
+
+I don't know the latest versions; but I remember a few years ago Mac OS using
+combined form in file names and Linux or Windows not being very fond of it.
+
+In my personal view, I very much dislike having *human language* inside code
+outside of comments; but if you have issues with your strings, keep these in
+mind:
+
+* Your editor: Beware of the encoding of your source code files. For Go, it
+must be UTF-8.
+
+* If you are dealing with the file system and targeting multiple platforms, be
+  careful about non-ASCII characters in file names, especially characters with
+  accents. (I prefer saying "non-ASCII characters instead of how some would call
+  those characters "Unicode characters" because ASCII characters are also
+  Unicode characters.)
+
+* TODO: add more suggestions.
