@@ -61,7 +61,7 @@ When you code, you never think about it; you just know how.
 ### Identifiers
 
 Identifiers in Go starts with a letter and continue with letters and digits. You
-can use unicode letters in identifiers, so `问候 := "Hello"` is a valid Go
+can use Unicode letters in identifiers, so `问候 := "Hello"` is a valid Go
 statement. (Please don't start an argument about this example. I just wanted to
 show what you can do. What you should/would do is your problem.)
 
@@ -81,7 +81,7 @@ grouping instead of alphabetic order.
 Integer literals represent [integer constant](#)s. Go support octal and hexadecimal
 literals with the use of prefixes: `0` for octal and `0x` or `0X` for
 hexadecimal. For hexadecimal literals, `a-f` digits are case insensitive so you
-can use either uppercase, lovercase or a mixture of them.
+can use either uppercase, lowercase or a mixture of them.
 
 TODO: Add information about the idiomatic use of lower/upper cases for
 hexadecimals in standard library.
@@ -104,3 +104,65 @@ Go natively support imaginary numbers. An imaginary literal is defined by the
 `i` suffix added to a token which would normally be either an integer or
 floating-point literal.
 
+#### Rune Literals
+
+A rune literal represents a rune constant. A rune constant's value is just a
+Unicode code point. Rune literals are defined by single quotes wrapping a
+character representation of the Unicode code point in alternative ways:
+
+1. The character itself. Since Go source code is Unicode encoded in UTF-8, you
+   can use any characters directly inside your code.
+
+   Examples: ```'a' ' ' 'ş' '我'```. (In the examples below, I will keep using
+   these same characters.)
+
+   Some people may not like this if they are not using a font that doesn't have
+   the glyphs for the code points you typed directly in the code.
+
+2. Hexadecimal and octal representations. These two cannot represent integer
+   values above 255. In hexadecimal representation, the integer value for the
+   Unicode code point is written with two hexadecimal digits with a leading
+   `\x`.
+
+   Examples: ```'\x61' '\x20'``` As you would expect, we cannot represent the
+   latter two characters in this form.
+
+   In octal representation, the value is written with 3 octal digits with a
+   leading of a single backslash `\`.
+
+   Examples: ```'\141' '\040'```.
+
+   You can actually represent 512 different values (0..511) with three octal
+   digits, `777`, compared to 256 different values (0..255) with two hexadecimal
+   digits, `ff`. Hexadecimal representation does not allow you to represent any
+   value above 255 although by structure. For octal representation, in spite of
+   being able to represent values above 255 with three digits; the limit is
+   still there and the maximum value a rune literal can have in octal
+   representation is `399` (255 decimal). If you try to have a rune literal such
+   as ``\400``, your code will not compile.
+
+4. In the other rune representation, `\u` and `\U` escapes are respectively
+   followed by 4 and 8 hexadecimal digits.
+
+   Example: ```'\u0061' '\u0020' '\u015f' '\u6211'```
+   Example: ```'\U00000061' '\U00000020' '\U0000015f' '\U00006211'```
+
+   In this representation, there illegal values such as surrogate halves and
+   values above `10ffff`.
+
+In addition to the escape sequences we have already seen (`\x \ \u \U`), there
+are also a small set of special escapes for some characters. Other than these,
+rune literals cannot have any other escape sequence.
+
+```
+\a   U+0007 alert or bell
+\b   U+0008 backspace
+\f   U+000C form feed
+\n   U+000A line feed or newline
+\r   U+000D carriage return
+\t   U+0009 horizontal tab
+\v   U+000b vertical tab
+\\   U+005c backslash
+\'   U+0027 single quote  (valid escape only within rune literals)
+\"   U+0022 double quote  (valid escape only within string literals)
+```
